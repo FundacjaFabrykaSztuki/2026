@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <title>Speaking Concerts: Hofmann Redivivus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'DM Sans', Arial, sans-serif;
             margin: 0;
             padding: 40px;
             background: #fafafa;
         }
         h1 {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+        }
+        .description {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+            line-height: 1.6;
+            color: #333;
         }
         .gallery {
             display: grid;
@@ -27,6 +37,8 @@
             cursor: pointer;
             border-radius: 4px;
         }
+
+        /* LIGHTBOX */
         .lightbox {
             position: fixed;
             inset: 0;
@@ -40,74 +52,144 @@
             max-width: 90%;
             max-height: 90%;
         }
+
+        /* STRZAŁKI */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            padding: 20px;
+        }
+        .arrow.left { left: 10px; }
+        .arrow.right { right: 10px; }
+
+        .photo-credit {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 
 <h1>Speaking Concerts: Hofmann Redivivus</h1>
 
-<div class="gallery">
-<img src="Zdjecie1.jpeg" alt="">
-<img src="Zdjecie2.jpeg" alt="">
-<img src="Zdjecie3.jpeg" alt="">
-<img src="Zdjecie4.jpeg" alt="">
-<img src="Zdjecie5.jpeg" alt="">
-<img src="Zdjecie6.jpeg" alt="">
-<img src="Zdjecie7.jpeg" alt="">
-<img src="Zdjecie8.jpeg" alt="">
-<img src="Zdjecie9.jpeg" alt="">
-<img src="Zdjecie10.jpeg" alt="">
-<img src="Zdjecie11.jpeg" alt="">
-<img src="Zdjecie12.jpeg" alt="">
-<img src="Zdjecie13.jpeg" alt="">
-<img src="Zdjecie14.jpeg" alt="">
-<img src="Zdjecie15.jpeg" alt="">
-<img src="Zdjecie16.jpeg" alt="">
-<img src="Zdjecie17.jpeg" alt="">
-<img src="Zdjecie18.jpeg" alt="">
-<img src="Zdjecie19.jpeg" alt="">
-<img src="Zdjecie20.jpeg" alt="">
-<img src="Zdjecie21.jpeg" alt="">
-<img src="Zdjecie22.jpeg" alt="">
-<img src="Zdjecie23.jpeg" alt="">
-<img src="Zdjecie24.jpeg" alt="">
-<img src="Zdjecie25.jpeg" alt="">
-<img src="Zdjecie26.jpeg" alt="">
-<img src="Zdjecie27.jpeg" alt="">
-<img src="Zdjecie28.jpeg" alt="">
-<img src="Zdjecie29.jpeg" alt="">
-<img src="Zdjecie30.jpeg" alt="">
+<div class="description">
+    <p>Koncert był wyjątkowym wydarzeniem, podczas którego dzięki technologii fortepianu Yamaha Disklavier „powrócił” Józef Hofmann, wykonując na żywo Koncert e-moll Fryderyk Chopin z towarzyszeniem orkiestry. Całość w formule Speaking Concert poprowadził Marcin Sompoliński, łącząc muzykę z fascynującą opowieścią o życiu i geniuszu artysty.</p>
 </div>
 
-    <div class="photo-credit">
+<div class="gallery">
+<img src="Zdjecie1.jpeg">
+<img src="Zdjecie2.jpeg">
+<img src="Zdjecie3.jpeg">
+<img src="Zdjecie4.jpeg">
+<img src="Zdjecie5.jpeg">
+<img src="Zdjecie6.jpeg">
+<img src="Zdjecie7.jpeg">
+<img src="Zdjecie8.jpeg">
+<img src="Zdjecie9.jpeg">
+<img src="Zdjecie10.jpeg">
+<img src="Zdjecie11.jpeg">
+<img src="Zdjecie12.jpeg">
+<img src="Zdjecie13.jpeg">
+<img src="Zdjecie14.jpeg">
+<img src="Zdjecie15.jpeg">
+<img src="Zdjecie16.jpeg">
+<img src="Zdjecie17.jpeg">
+<img src="Zdjecie18.jpeg">
+<img src="Zdjecie19.jpeg">
+<img src="Zdjecie20.jpeg"> 
+<img src="Zdjecie21.jpeg">
+<img src="Zdjecie22.jpeg">
+<img src="Zdjecie23.jpeg">
+<img src="Zdjecie24.jpeg">
+<img src="Zdjecie25.jpeg">
+<img src="Zdjecie26.jpeg">
+<img src="Zdjecie27.jpeg">
+<img src="Zdjecie28.jpeg">
+<img src="Zdjecie29.jpeg">
+<img src="Zdjecie30.jpeg">
+</div>
+
+<div class="photo-credit">
     fot. Marcin Zięba | Finch Enterprise
 </div>
 
-<div class="lightbox" onclick="this.style.display='none'">
+<div class="lightbox" id="lightbox">
+    <span class="arrow left">&#10094;</span>
     <img src="">
+    <span class="arrow right">&#10095;</span>
 </div>
 
 <script>
     const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.querySelector('.lightbox img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
 
-    images.forEach(img => {
+    let currentIndex = 0;
+
+    function showImage(index) {
+        currentIndex = index;
+        lightboxImg.src = images[currentIndex].src;
+    }
+
+    images.forEach((img, index) => {
         img.addEventListener('click', () => {
-            lightbox.src = img.src;
-            document.querySelector('.lightbox').style.display = 'flex';
+            lightbox.style.display = 'flex';
+            showImage(index);
         });
     });
-</script>
 
-<style>
-.photo-credit {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #555;
-    font-style: italic;
-}
-</style>
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+
+    rightArrow.onclick = nextImage;
+    leftArrow.onclick = prevImage;
+
+    // klik poza zdjęciem zamyka
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+        }
+    });
+
+    // klawiatura
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'flex') {
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') lightbox.style.display = 'none';
+        }
+    });
+
+    // swipe (mobile)
+    let startX = 0;
+
+    lightbox.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+    });
+
+    lightbox.addEventListener('touchend', e => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextImage();
+        if (endX - startX > 50) prevImage();
+    });
+</script>
 
 </body>
 </html>
