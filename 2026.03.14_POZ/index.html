@@ -4,16 +4,26 @@
     <meta charset="UTF-8">
     <title>Speaking Concerts: Pasja</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'DM Sans', Arial, sans-serif;
             margin: 0;
             padding: 40px;
             background: #fafafa;
         }
         h1 {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+        }
+        .description {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+            line-height: 1.6;
+            color: #333;
         }
         .gallery {
             display: grid;
@@ -27,6 +37,8 @@
             cursor: pointer;
             border-radius: 4px;
         }
+
+        /* LIGHTBOX */
         .lightbox {
             position: fixed;
             inset: 0;
@@ -40,124 +52,202 @@
             max-width: 90%;
             max-height: 90%;
         }
+
+        /* STRZAŁKI */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            padding: 20px;
+        }
+        .arrow.left { left: 10px; }
+        .arrow.right { right: 10px; }
+
+        .photo-credit {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
 
 <h1>Speaking Concerts: Pasja</h1>
 
-<div class="gallery">
-<img src="Zdjecie1.jpeg" alt="">
-<img src="Zdjecie2.jpeg" alt="">
-<img src="Zdjecie3.jpeg" alt="">
-<img src="Zdjecie4.jpeg" alt="">
-<img src="Zdjecie5.jpeg" alt="">
-<img src="Zdjecie6.jpeg" alt="">
-<img src="Zdjecie7.jpeg" alt="">
-<img src="Zdjecie8.jpeg" alt="">
-<img src="Zdjecie9.jpeg" alt="">
-<img src="Zdjecie10.jpeg" alt="">
-<img src="Zdjecie11.jpeg" alt="">
-<img src="Zdjecie12.jpeg" alt="">
-<img src="Zdjecie13.jpeg" alt="">
-<img src="Zdjecie14.jpeg" alt="">
-<img src="Zdjecie15.jpeg" alt="">
-<img src="Zdjecie16.jpeg" alt="">
-<img src="Zdjecie17.jpeg" alt="">
-<img src="Zdjecie18.jpeg" alt="">
-<img src="Zdjecie19.jpeg" alt="">
-<img src="Zdjecie20.jpeg" alt="">
-<img src="Zdjecie21.jpeg" alt="">
-<img src="Zdjecie22.jpeg" alt="">
-<img src="Zdjecie23.jpeg" alt="">
-<img src="Zdjecie24.jpeg" alt="">
-<img src="Zdjecie25.jpeg" alt="">
-<img src="Zdjecie26.jpeg" alt="">
-<img src="Zdjecie27.jpeg" alt="">
-<img src="Zdjecie28.jpeg" alt="">
-<img src="Zdjecie29.jpeg" alt="">
-<img src="Zdjecie30.jpeg" alt="">
-<img src="Zdjecie31.jpeg" alt="">
-<img src="Zdjecie32.jpeg" alt="">
-<img src="Zdjecie33.jpeg" alt="">
-<img src="Zdjecie34.jpeg" alt="">
-<img src="Zdjecie35.jpeg" alt="">
-<img src="Zdjecie36.jpeg" alt="">
-<img src="Zdjecie37.jpeg" alt="">
-<img src="Zdjecie38.jpeg" alt="">
-<img src="Zdjecie39.jpeg" alt="">
-<img src="Zdjecie40.jpeg" alt="">
-<img src="Zdjecie41.jpeg" alt="">
-<img src="Zdjecie42.jpeg" alt="">
-<img src="Zdjecie43.jpeg" alt="">
-<img src="Zdjecie44.jpeg" alt="">
-<img src="Zdjecie45.jpeg" alt="">
-<img src="Zdjecie46.jpeg" alt="">
-<img src="Zdjecie47.jpeg" alt="">
-<img src="Zdjecie48.jpeg" alt="">
-<img src="Zdjecie49.jpeg" alt="">
-<img src="Zdjecie50.jpeg" alt="">
-<img src="Zdjecie51.jpeg" alt="">
-<img src="Zdjecie52.jpeg" alt="">
-<img src="Zdjecie53.jpeg" alt="">
-<img src="Zdjecie54.jpeg" alt="">
-<img src="Zdjecie55.jpeg" alt="">
-<img src="Zdjecie56.jpeg" alt="">
-<img src="Zdjecie57.jpeg" alt="">
-<img src="Zdjecie58.jpeg" alt="">
-<img src="Zdjecie59.jpeg" alt="">
-<img src="Zdjecie60.jpeg" alt="">
-<img src="Zdjecie61.jpeg" alt="">
-<img src="Zdjecie62.jpeg" alt="">
-<img src="Zdjecie63.jpeg" alt="">
-<img src="Zdjecie64.jpeg" alt="">
-<img src="Zdjecie65.jpeg" alt="">
-<img src="Zdjecie66.jpeg" alt="">
-<img src="Zdjecie67.jpeg" alt="">
-<img src="Zdjecie68.jpeg" alt="">
-<img src="Zdjecie69.jpeg" alt="">
-<img src="Zdjecie70.jpeg" alt="">
-<img src="Zdjecie71.jpeg" alt="">
-<img src="Zdjecie72.jpeg" alt="">
-<img src="Zdjecie73.jpeg" alt="">
-<img src="Zdjecie74.jpeg" alt="">
-<img src="Zdjecie75.jpeg" alt="">
-<img src="Zdjecie76.jpeg" alt="">
-<img src="Zdjecie77.jpeg" alt="">
-<img src="Zdjecie78.jpeg" alt="">
-<img src="Zdjecie79.jpeg" alt="">
-<img src="Zdjecie80.jpeg" alt="">
+<div class="description">
+    <p>Koncert z cyklu Speaking Concerts: Pasja był głęboką i poruszającą interpretacją Pasja wg św. Jana autorstwa Jan Sebastian Bach, podczas której publiczność odkrywała muzykę jako formę retorycznej narracji, analizując jej symbole, figury i ukryte znaczenia. W trakcie wydarzenia Marcin Sompoliński wraz z zespołem artystów połączył wykonanie z błyskotliwym komentarzem, prowadząc słuchaczy przez fascynujące pytania, konteksty historyczne i tajemnice jednego z najważniejszych dzieł muzyki sakralnej.</p>
 </div>
 
-    <div class="photo-credit">
+<div class="gallery">
+<img src="Zdjecie1.jpeg">
+<img src="Zdjecie2.jpeg">
+<img src="Zdjecie3.jpeg">
+<img src="Zdjecie4.jpeg">
+<img src="Zdjecie5.jpeg">
+<img src="Zdjecie6.jpeg">
+<img src="Zdjecie7.jpeg">
+<img src="Zdjecie8.jpeg">
+<img src="Zdjecie9.jpeg">
+<img src="Zdjecie10.jpeg">
+<img src="Zdjecie11.jpeg">
+<img src="Zdjecie12.jpeg">
+<img src="Zdjecie13.jpeg">
+<img src="Zdjecie14.jpeg">
+<img src="Zdjecie15.jpeg">
+<img src="Zdjecie16.jpeg">
+<img src="Zdjecie17.jpeg">
+<img src="Zdjecie18.jpeg">
+<img src="Zdjecie19.jpeg">
+<img src="Zdjecie20.jpeg"> 
+<img src="Zdjecie21.jpeg">
+<img src="Zdjecie22.jpeg">
+<img src="Zdjecie23.jpeg">
+<img src="Zdjecie24.jpeg">
+<img src="Zdjecie25.jpeg">
+<img src="Zdjecie26.jpeg">
+<img src="Zdjecie27.jpeg">
+<img src="Zdjecie28.jpeg">
+<img src="Zdjecie29.jpeg">
+<img src="Zdjecie30.jpeg">
+<img src="Zdjecie31.jpeg">
+<img src="Zdjecie32.jpeg">
+<img src="Zdjecie33.jpeg">
+<img src="Zdjecie34.jpeg">
+<img src="Zdjecie35.jpeg">
+<img src="Zdjecie36.jpeg">
+<img src="Zdjecie37.jpeg">
+<img src="Zdjecie38.jpeg">
+<img src="Zdjecie39.jpeg">
+<img src="Zdjecie40.jpeg">
+<img src="Zdjecie41.jpeg">
+<img src="Zdjecie42.jpeg">
+<img src="Zdjecie43.jpeg">
+<img src="Zdjecie44.jpeg">
+<img src="Zdjecie45.jpeg">
+<img src="Zdjecie46.jpeg">
+<img src="Zdjecie47.jpeg">
+<img src="Zdjecie48.jpeg">
+<img src="Zdjecie49.jpeg">
+<img src="Zdjecie50.jpeg">
+<img src="Zdjecie51.jpeg">
+<img src="Zdjecie52.jpeg">
+<img src="Zdjecie53.jpeg">
+<img src="Zdjecie54.jpeg">
+<img src="Zdjecie55.jpeg">
+<img src="Zdjecie56.jpeg">
+<img src="Zdjecie57.jpeg">
+<img src="Zdjecie58.jpeg">
+<img src="Zdjecie59.jpeg">
+<img src="Zdjecie60.jpeg">
+<img src="Zdjecie61.jpeg">
+<img src="Zdjecie62.jpeg">
+<img src="Zdjecie63.jpeg">
+<img src="Zdjecie64.jpeg">
+<img src="Zdjecie65.jpeg">
+<img src="Zdjecie66.jpeg">
+<img src="Zdjecie67.jpeg">
+<img src="Zdjecie68.jpeg">
+<img src="Zdjecie69.jpeg">
+<img src="Zdjecie70.jpeg">
+<img src="Zdjecie71.jpeg">
+<img src="Zdjecie72.jpeg">
+<img src="Zdjecie73.jpeg">
+<img src="Zdjecie74.jpeg">
+<img src="Zdjecie75.jpeg">
+<img src="Zdjecie76.jpeg">
+<img src="Zdjecie77.jpeg">
+<img src="Zdjecie78.jpeg">
+<img src="Zdjecie79.jpeg">
+<img src="Zdjecie80.jpeg">
+<img src="Zdjecie81.jpeg">
+<img src="Zdjecie82.jpeg">
+<img src="Zdjecie83.jpeg">
+<img src="Zdjecie84.jpeg">
+<img src="Zdjecie85.jpeg">
+<img src="Zdjecie86.jpeg">
+<img src="Zdjecie87.jpeg">
+<img src="Zdjecie88.jpeg">
+</div>
+
+<div class="photo-credit">
     fot. Piotr Łysakowski | Nie tylko samoloty
 </div>
 
-<div class="lightbox" onclick="this.style.display='none'">
+<div class="lightbox" id="lightbox">
+    <span class="arrow left">&#10094;</span>
     <img src="">
+    <span class="arrow right">&#10095;</span>
 </div>
 
 <script>
     const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.querySelector('.lightbox img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
 
-    images.forEach(img => {
+    let currentIndex = 0;
+
+    function showImage(index) {
+        currentIndex = index;
+        lightboxImg.src = images[currentIndex].src;
+    }
+
+    images.forEach((img, index) => {
         img.addEventListener('click', () => {
-            lightbox.src = img.src;
-            document.querySelector('.lightbox').style.display = 'flex';
+            lightbox.style.display = 'flex';
+            showImage(index);
         });
     });
-</script>
 
-<style>
-.photo-credit {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 0.9rem;
-    color: #555;
-    font-style: italic;
-}
-</style>
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+
+    rightArrow.onclick = nextImage;
+    leftArrow.onclick = prevImage;
+
+    // klik poza zdjęciem zamyka
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = 'none';
+        }
+    });
+
+    // klawiatura
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === 'flex') {
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') lightbox.style.display = 'none';
+        }
+    });
+
+    // swipe (mobile)
+    let startX = 0;
+
+    lightbox.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+    });
+
+    lightbox.addEventListener('touchend', e => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextImage();
+        if (endX - startX > 50) prevImage();
+    });
+</script>
 
 </body>
 </html>
